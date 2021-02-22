@@ -6,7 +6,8 @@ class TweetsController < ApplicationController
     end
 
     @tweets = Tweet.all.reverse
-
+    @friend = Friend.new
+    @yo = User.find(session[:user_id])
   end
 
   def show

@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get 'i/user', to: "users#index"
   post 'c/user', to: "users#create", as: "cu"
 
+  # /////////////modelo friend/////////////////////
+  post 'c/friend', to: 'friends#create', as: 'c_friend'
+
   # //////////modelo tweet///////////////////
   get 'i/tweets', to: 'tweets#index'
 

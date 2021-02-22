@@ -74,8 +74,14 @@ Image.create([
     },
     {
         url: "https://www.lavanguardia.com/files/image_449_220/uploads/2019/10/04/5fa52edb66a4d.jpeg"
+    },
+    {
+        url: "https://www.lavanguardia.com/files/image_449_220/uploads/2019/10/04/5fa52edb66a4d.jpeg"
+    },
+    {
+        url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWt3oSk4GK8wxkHF466SQSyw2Ulp_DostLmA&usqp=CAU"
     }
-]);
 
+]);
 
 
