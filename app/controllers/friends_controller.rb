@@ -6,6 +6,17 @@ class FriendsController < ApplicationController
         redirect_to i_tweets_path
     end
 
+    def destroy
+        @friendship = Friend.find_by(
+            user_id: params[:friend][:user_id], 
+            friend_id: params[:friend][:friend_id])
+
+            if @friendship.present?
+                @friendship.destroy
+                redirect_to i_tweets_path
+            end
+    end
+
     private
 
     def friend_params

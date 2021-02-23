@@ -57,11 +57,18 @@
             </div>
             <%# ///////////////////////////BOTON SEGUIR////////////////////////// %>
             <div class="px-2">
-                <%= form_with(url: c_friend_path, model: instancia, local: true) do |f| %>
+                <% if Friend.find_by(user_id: session[:user_id], friend_id: i.user.id) %>
+                    <%= form_with(url: d_friend_path, model: instancia, local: true) do |f| %>
+                        <%= f.number_field :user_id, value: session[:user_id], type: "hidden" %>
+                        <%= f.number_field :friend_id, value: i.user.id, type: "hidden" %>
+                    <% end %>
+                <% else %>
+                     <%= form_with(url: c_friend_path, model: instancia, local: true) do |f| %>
                         <%= f.number_field :user_id, value: session[:user_id], type: "hidden" %>
                         <%= f.number_field :friend_id, value: i.user.id, type: "hidden" %>
                         <%= f.submit 'hacer amigo' %>
                     <% end %>
+                <% end %>
             </div>
         </div>
     <% end %>

@@ -34,7 +34,9 @@
       <%# ///////////////////////////////////// %>
       <div>
         <% if sesion %>
-          <div class="d-flex">
+          <div class="d-flex align-items-center">
+            <a href="<%= i_tweets_path %>" class="px-5 link-nav"> ver tweets </a>
+
           <%# //////////foto usuario navbar////////////////// %>
             <div style="background-image: url(<%= current_user.photo %>);width: 50px; height: 50px; background-size: cover; background-position: center; border-radius: 25px">
 

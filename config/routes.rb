@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   # /////////////modelo friend/////////////////////
   post 'c/friend', to: 'friends#create', as: 'c_friend'
+  post 'd/friend', to: 'friends#destroy', as: 'd_friend'
 
   # //////////modelo tweet///////////////////
   get 'i/tweets', to: 'tweets#index'

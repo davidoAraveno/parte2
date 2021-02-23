@@ -1,8 +1,13 @@
 <form>
     <% if params[:tweets_todos] %>
-        <input type="submit" name="tweets_amigos", value="tweets de amigos">
+        <button type="submit" name="tweets_amigos", value="todos los tweets" style="background: #D5D5D5; border: none; color: #3B3B3B; border-radius: 7px" class="d-flex align-items-center"> 
+            <p class="px-2"> <i class="fas fa-user-friends text-info"></i> ver todos los tweets </p> 
+        </button>
     <% else %>
-        <input type="submit" name="tweets_todos", value="todos los tweets">
+        <button type="submit" name="tweets_todos", value="tweets de amigos" style="background: #D5D5D5; border: none; color: #3B3B3B; border-radius: 7px" class="d-flex align-items-center"> 
+            <p class="px-2"> <i class="fas fa-user-friends text-info"></i> ver tweets de amigos </p> 
+        </button>
+
     <% end %>
 </form>
 
