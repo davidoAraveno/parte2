@@ -78,10 +78,10 @@
             <% @tweets.each do |i| %>
             <%# ////////////////////// %>
                 <% if params[:tweets_todos]%>
-                    <%= render 'form', iterador: i %>
+                    <%= render 'form', i: i, instancia: @friend %>
                 <% else %>
                      <% if @yo.friends.find_by(friend_id: i.user.id) %>
-                        <%= render 'form', iterador: i %>
+                        <%= render 'form', i: i, instancia: @friend %>
                     <% end %>
                 <% end %>
             <% end %>

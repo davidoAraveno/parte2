@@ -1,40 +1,40 @@
 <div class="col-md-7 mb-3 pt-2" style="background: #D5D5D5; border-radius: 15px">
     <div class="d-flex justify-content-between">
         <div class="d-flex">
-            <div style="background-image:url(<%= iterador.user.photo %>); width: 50px; height: 50px; background-size: cover; background-position: center; border-radius:50px">
+            <div style="background-image:url(<%= i.user.photo %>); width: 50px; height: 50px; background-size: cover; background-position: center; border-radius:50px">
 
             </div>
             <div style="margin-left: 2rem" class="title">
-                <h4><%= iterador.user.name.capitalize %> </h4>
+                <h4><%= i.user.name.capitalize %> </h4>
             </div>
         </div>
         <div>
-            <a href="<%= st_path(iterador.id) %>" class="time-ago"> <%= time_ago_in_words(iterador.created_at) %> </a>
+            <a href="<%= st_path(i.id) %>" class="time-ago"> <%= time_ago_in_words(i.created_at) %> </a>
         </div>
     </div>
     <hr style="margin: 10px">
     <div style="border-radius: 5px; padding-left:1rem;">
-        <p class="content"> <%= iterador.content.capitalize %> </p>
+        <p class="content"> <%= i.content.capitalize %> </p>
     </div>
     <%# ////////////////////////////RETWEET EN EL TWEET/////////////////////////////////////////////                 %>
-    <% if iterador.tweet_id != nil %>
+    <% if i.tweet_id != nil %>
         <div class="col-md-12 mb-3 pt-2 container-fluid" style="border-radius: 15px; border: 2px solid #B3B3B3">
             <div class="d-flex justify-content-between">
                 <div class="d-flex">
-                    <div style="background-image:url(<%= iterador.tweet.user.photo %>); width: 50px; height: 50px; background-size: cover; background-position: center; border-radius:50px">
+                    <div style="background-image:url(<%= i.tweet.user.photo %>); width: 50px; height: 50px; background-size: cover; background-position: center; border-radius:50px">
 
                     </div>
                     <div style="margin-left: 2rem" class="title">
-                        <h5>Retweet a:<%= iterador.tweet.user.name.capitalize %> </h5>
+                        <h5>Retweet a:<%= i.tweet.user.name.capitalize %> </h5>
                     </div>
                 </div>
                 <div>
-                    <p class="time-ago"> <%= time_ago_in_words(iterador.tweet.created_at) %> </p>
+                    <p class="time-ago"> <%= time_ago_in_words(i.tweet.created_at) %> </p>
                 </div>
             </div>
             <hr style="margin: 10px 0; background: #B3B3B3; padding: 0.5px 0">
             <div>
-                <p class="content"> <%= iterador.tweet.content.capitalize %> </p>
+                <p class="content"> <%= i.tweet.content.capitalize %> </p>
             </div>
         </div>
     <% end%>
@@ -42,28 +42,26 @@
     <% if session[:user_id] %>
         <div class="d-flex">
             <div style="border-radius: 15px; padding: 0;">
-                <a href="<%= retweet_path(iterador.id) %>">
-                    <p style="font-size: 1.6rem;" class="text-info"><i class="fas fa-retweet"></i></p>
+                <a href="<%= retweet_path(i.id) %>">
+                    <p style="font-size: 1.6rem;" class="text-info"> <i class="fas fa-retweet"></i> <%= i.retweets %> </p>
                 </a>
             </div>
             <div style="margin-left: 1rem;">
-                <a href="<%= nuevo_like_path(iterador.id, session[:user_id]) %>">
-                    <% if iterador.likes.find_by(user_id: session[:user_id], tweet_id: iterador.id) %>
-                        <p style="font-size: 1.3rem;" class="text-info"> <i class="fas fa-heart" style="color: #CC3366"></i> <%= iterador.cant_likes %> </p>
+                <a href="<%= nuevo_like_path(i.id, session[:user_id]) %>">
+                    <% if i.likes.find_by(user_id: session[:user_id], tweet_id: i.id) %>
+                        <p style="font-size: 1.3rem;" class="text-info"> <i class="fas fa-heart" style="color: #CC3366"></i> <%= i.cant_likes %> </p>
                     <% else %>
-                        <p style="font-size: 1.3rem;" class="text-info"> <i class="fas fa-thumbs-up"></i> <%= iterador.cant_likes %> </p>
+                        <p style="font-size: 1.3rem;" class="text-info"> <i class="fas fa-thumbs-up"></i> <%= i.cant_likes %> </p>
                     <% end %>
                 </a>
             </div>
             <%# ///////////////////////////BOTON SEGUIR////////////////////////// %>
-            <div>
-                <%= form_with(url: c_friend_path,model: @friend, local: true) do |f| %>
-                    <% f.number_field :user_id, value: session[:user_id] %>
-                    <% f.number_field :friend_id, value: iterador.user.id %>
-                    <%= button_tag type: 'submit' do %>
-                        <i class="fas fa-user-friends"></i>
+            <div class="px-2">
+                <%= form_with(url: c_friend_path, model: instancia, local: true) do |f| %>
+                        <%= f.number_field :user_id, value: session[:user_id], type: "hidden" %>
+                        <%= f.number_field :friend_id, value: i.user.id, type: "hidden" %>
+                        <%= f.submit 'hacer amigo' %>
                     <% end %>
-                <% end %>
             </div>
         </div>
     <% end %>
