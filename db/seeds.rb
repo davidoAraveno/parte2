@@ -8,6 +8,7 @@
 
 
 Image.destroy_all
+Like.destroy_all
 Tweet.destroy_all
 User.destroy_all
 
