@@ -4,7 +4,7 @@
             <div style="background-image:url(<%= i.user.photo %>); width: 50px; height: 50px; background-size: cover; background-position: center; border-radius:50px">
 
             </div>
-            <div style="margin-left: 2rem" class="title">
+            <div style="margin-left: 1rem" class="title">
                 <h4><%= i.user.name.capitalize %> </h4>
             </div>
         </div>
@@ -61,12 +61,17 @@
                     <%= form_with(url: d_friend_path, model: instancia, local: true) do |f| %>
                         <%= f.number_field :user_id, value: session[:user_id], type: "hidden" %>
                         <%= f.number_field :friend_id, value: i.user.id, type: "hidden" %>
+                        <%= button_tag type: 'submit', style:"background:none; border: none; font-size: 1.3rem; color: #FF7D33" do %>
+                            <i class="fas fa-user-friends"></i>
+                        <% end %>
                     <% end %>
                 <% else %>
                      <%= form_with(url: c_friend_path, model: instancia, local: true) do |f| %>
                         <%= f.number_field :user_id, value: session[:user_id], type: "hidden" %>
                         <%= f.number_field :friend_id, value: i.user.id, type: "hidden" %>
-                        <%= f.submit 'hacer amigo' %>
+                        <%= button_tag type: 'submit', style:"background:none; border: none; font-size: 1.3rem", class:"text-info" do %>
+                            <i class="fas fa-user-slash"></i>
+                        <% end %>
                     <% end %>
                 <% end %>
             </div>
